@@ -22,6 +22,12 @@ mkdir $INSTALL_DIR
 mkdir $BUILD_DIR
 
 
+if [[  -d $BASE_DIR  ]] ;then 
+    printf "Detected old work dir removing..\n"
+    rm -rf $BASE_DIR
+    printf "Success..\n"
+fi
+
 function INFO_PRINTER(){
     text=$1
     printf "$blue[ INFO ]:$reset $text .\n"
@@ -42,7 +48,7 @@ function WARN_PRINTER(){
 
 function TITLE_PRINTER(){
     text=$1
-    printf "$green<[ $text ]>$reset"
+    printf "$green<[ $text ]>$reset\n"
 }
 
 function CHECK_LAST_COMMAND(){
