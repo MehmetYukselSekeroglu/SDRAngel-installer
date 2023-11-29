@@ -557,5 +557,51 @@ CHECK_LAST_COMMAND
 echo 
 CLEAR_AND_CONTINUE
 INFO_PRINTER "Proccess complated."
+INFO_PRINTER "Starting main build"
+sleep 0.5
 
+
+cd $BUILD_DIR
+CHECK_LAST_COMMAND
+
+git clone https://github.com/f4exb/sdrangel.git
+CHECK_LAST_COMMAND
+
+cd sdrangel
+CHECK_LAST_COMMAND
+
+mkdir build; cd build
+CHECK_LAST_COMMAND
+
+INFO_PRINTER "Starting cmake build.."
+
+cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON \
+-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+-DMIRISDR_DIR=$INSTALL_DIR/libmirisdr \
+-DAIRSPY_DIR=$INSTALL_DIR/libairspy \
+-DAIRSPYHF_DIR=$INSTALL_DIR/libairspyhf \
+-DBLADERF_DIR=$INSTALL_DIR/libbladeRF \
+-DHACKRF_DIR=$INSTALL_DIR/libhackrf \
+-DRTLSDR_DIR=$INSTALL_DIR/librtlsdr \
+-DLIMESUITE_DIR=$INSTALL_DIR/LimeSuite \
+-DIIO_DIR=$INSTALL_DIR/libiio \
+-DPERSEUS_DIR=$INSTALL_DIR/libperseus \
+-DXTRX_DIR=$INSTALL_DIR/xtrx-images \
+-DSOAPYSDR_DIR=$INSTALL_DIR/SoapySDR \
+-DUHD_DIR=$INSTALL_DIR/uhd \
+-DAPT_DIR=$INSTALL_DIR/aptdec \
+-DCM256CC_DIR=$INSTALL_DIR/cm256cc \
+-DDSDCC_DIR=$INSTALL_DIR/dsdcc \
+-DSERIALDV_DIR=$INSTALL_DIR/serialdv \
+-DMBE_DIR=$INSTALL_DIR/mbelib \
+-DCODEC2_DIR=$INSTALL_DIR/codec2 \
+-DSGP4_DIR=$INSTALL_DIR/sgp4 \
+-DLIBSIGMF_DIR=$INSTALL_DIR/libsigmf \
+-DDAB_DIR=$INSTALL_DIR/libdab \
+-DCMAKE_INSTALL_PREFIX=$INSTALL_DIR/sdrangel ..
+
+CHECK_LAST_COMMAND
+
+make -j $(nproc) install
+CHECK_LAST_COMMAND
 
