@@ -17,6 +17,11 @@ BUILD_DIR="$BASE_DIR/build"
 INSTALL_DIR="$BASE_DIR/install"
 
 
+mkdir $BASE_DIR
+mkdir $INSTALL_DIR
+mkdir $BASE_DIR
+
+
 function INFO_PRINTER(){
     text=$1
     printf "$blue[ INFO ]:$reset $text .\n"
