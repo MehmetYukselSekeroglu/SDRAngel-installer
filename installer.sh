@@ -19,7 +19,7 @@ INSTALL_DIR="$BASE_DIR/install"
 
 mkdir $BASE_DIR
 mkdir $INSTALL_DIR
-mkdir $BASE_DIR
+mkdir $BUILD_DIR
 
 
 function INFO_PRINTER(){
